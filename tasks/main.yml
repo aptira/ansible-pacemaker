@@ -12,3 +12,4 @@
 - include: sync.yml
 - include: start.yml
 - include: properties.yml
+- include: resources.yml

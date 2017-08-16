@@ -30,6 +30,10 @@ options:
     required: false
     description:
       - List of hashes of operations.
+  meta:
+    required: false
+    description:
+      - List of hashes of metadata.
   clone:
     required: false
     description:
@@ -156,11 +160,9 @@ def main():
         # Process meta.
         if module.params.has_key('meta') and module.params['meta']:
             cmd += ' meta %(meta)s'
-            meta = []
-            for op in module.params['meta']:
-                op['options'] = ' '.join(['%s="%s"' % (key, value) for (key, value) in op['options'].items()])
-                meta.append('%(options)s' % op)
-            module.params['meta'] = ' '.join(meta)
+            meta = module.params['meta']
+            meta = ' '.join(['%s="%s"' % (key, value) for (key, value) in meta.items()])
+            module.params['meta'] = meta
 
         if module.params['disable']:
             cmd += ' --disable'

@@ -20,3 +20,4 @@ pacemaker_properties:
     value: true
   - name: enable-acl
     value: false
+pacemaker_resources: []

@@ -1,0 +1,16 @@
+---
+# file: roles/pacemaker/tasks/resources.yml
+- name: Enabling/Disabling Pacemaker resources
+  pcs_resource:
+    command={{ item.command | lower }}
+    resource_id={{ item.resource_id | lower }}
+    type={{ item.type | lower }}
+    options={{ item.options }}
+    operations={{ item.operations }}
+    meta={{ item.meta }}
+  with_items: 
+    - "{{ pacemaker_resources }}"
+  run_once: true
+  tags:
+    - pacemaker
+    - pacemaker-resources
